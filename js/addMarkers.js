@@ -4,7 +4,7 @@ AFRAME.registerComponent("create-markers", {
 
     var mainScene = document.querySelector("#main-scene");
 
-    //get the dishes collection from firestore database
+    //Toma la colección de platillos de la base de datos Firebase.
     var dishes = await this.getDishes();
    
     dishes.map(dish => {
@@ -16,11 +16,11 @@ AFRAME.registerComponent("create-markers", {
         rayOrigin: "mouse"
       });
 
-      //set the markerhandler component
+      //Establece el componente markerhandler.
       marker.setAttribute("markerhandler", {});
       mainScene.appendChild(marker);
 
-      // Adding 3D model to scene
+      // Añade el modelo a la escena.
       var model = document.createElement("a-entity");    
      
       model.setAttribute("id", `model-${dish.id}`);
@@ -31,7 +31,7 @@ AFRAME.registerComponent("create-markers", {
       model.setAttribute("gesture-handler", {});
       marker.appendChild(model);
 
-      // Ingredients Container
+      // Contenedor de ingredientes.
       var mainPlane = document.createElement("a-plane");
       mainPlane.setAttribute("id", `main-plane-${dish.id}`);
       mainPlane.setAttribute("position", { x: 0, y: 0, z: 0 });
@@ -40,7 +40,7 @@ AFRAME.registerComponent("create-markers", {
       mainPlane.setAttribute("height", 1.5);
       marker.appendChild(mainPlane);
 
-      // Dish title background plane
+      // Plano de fondo para el título del platillo
       var titlePlane = document.createElement("a-plane");
       titlePlane.setAttribute("id", `title-plane-${dish.id}`);
       titlePlane.setAttribute("position", { x: 0, y: 0.89, z: 0.02 });
@@ -50,7 +50,7 @@ AFRAME.registerComponent("create-markers", {
       titlePlane.setAttribute("material", { color: "#F0C30F" });
       mainPlane.appendChild(titlePlane);
 
-      // Dish title
+      // Título del platillo.
       var dishTitle = document.createElement("a-entity");
       dishTitle.setAttribute("id", `dish-title-${dish.id}`);
       dishTitle.setAttribute("position", { x: 0, y: 0, z: 0.1 });
@@ -65,7 +65,7 @@ AFRAME.registerComponent("create-markers", {
       });
       titlePlane.appendChild(dishTitle);
 
-      // Ingredients List
+      // Lista de ingredientes.
       var ingredients = document.createElement("a-entity");
       ingredients.setAttribute("id", `ingredients-${dish.id}`);
       ingredients.setAttribute("position", { x: 0.3, y: 0, z: 0.1 });
@@ -80,7 +80,7 @@ AFRAME.registerComponent("create-markers", {
       mainPlane.appendChild(ingredients);
     });
   },
-  //function to get the dishes collection from firestore database
+  //Función para tomar la colección de platillos desde la base de datos Firebase.
   getDishes: async function() {
     return await firebase
       .firestore()

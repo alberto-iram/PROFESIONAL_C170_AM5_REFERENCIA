@@ -1,2 +1,2 @@
-# PRO-C170
-Solution Code for PRO-C170
+# PROFESIONAL_C170
+Código de referencia para la clase PROFESIONAL_C170
